@@ -1,6 +1,7 @@
 import os
 import shutil
 from textnode import TextType, TextNode
+from generate_page import generate_page, generate_pages_recursive
 
 def copy_content_r(source, dest):
     if not os.path.exists(source):
@@ -28,5 +29,6 @@ def copy_content_r(source, dest):
 
 def main():
     copy_content_r("static", "public")
+    generate_pages_recursive("content", "template.html", "public")
 
 main()

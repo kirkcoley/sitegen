@@ -71,7 +71,8 @@ def markdown_to_html_node(markdown):
             case BlockType.PARAGRAPH:
                 nodes.append(ParentNode("p", text_to_children(block)))
             case BlockType.HEADING:
-                nodes.append(ParentNode(f"h{block[:7].count('#')}", text_to_children(block)))
+                heading = block.lstrip("#").strip()
+                nodes.append(ParentNode(f"h{block[:7].count('#')}", text_to_children(heading)))
             case BlockType.CODE:
                 text = TextNode(block.strip("```"), TextType.CODE)
                 child = [text_node_to_html_node(text)]
@@ -98,7 +99,9 @@ def md_list_to_html_list(block):
     items = block.splitlines()
     html_list = []
     for item in items:
-        html_list.append(LeafNode("li", item[2:].strip()))
+        text = item[2:].strip()
+        children = text_to_children(text)
+        html_list.append(ParentNode("li", children))
     return html_list
 
 def text_to_children(text):
@@ -107,3 +110,11 @@ def text_to_children(text):
     for node in textnodes:
         htmlnodes.append(text_node_to_html_node(node))
     return htmlnodes
+
+def extract_title(markdown):
+    if not markdown.startswith("# "):
+        raise Exception("No valid title")
+    line = markdown.split("\n\n", 1)[0]
+    title = line.lstrip("#").strip()
+    return title
+
