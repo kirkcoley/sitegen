@@ -14,7 +14,7 @@ Here's the deal, **I like Tolkien**.
 - [Why Tom Bombadil Was a Mistake](/blog/tom)
 - [The Unparalleled Majesty of "The Lord of the Rings"](/blog/majesty)
 
-## Reasons I like Tolkien
+## Reasons I like James
 
 - You can spend years studying the legendarium and still not understand its depths
 - It can be enjoyed by children and adults alike
